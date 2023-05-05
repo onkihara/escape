@@ -1,6 +1,5 @@
 <script>
     export let form;
-    console.log(form)
 </script>
 
 <div class="esc_center">
@@ -14,7 +13,7 @@
         </label>
         <label>
             Root Access Key
-            <input name="key" value="{form?.key || ''}" />
+            <input name="root_key" value="{form?.root_key || ''}" />
         </label>
         <button>Send</button>
     </form>
@@ -25,30 +24,4 @@
 
 </div>
 
-<style lang="scss">
-    .esc_center {
-        display:flex;
-        flex-direction:column;
-        text-align:center;
-        align-self:center;
-        label {
-            display:block;
-            margin-top:20px;
-            input {
-                display:block;
-                width:200px;
-                height:40px;
-                margin:auto;
-                text-align:center;
-            }
-        }
-        button {
-            width:80px;
-            height:40px;
-            margin-top:25px;
-        }
-    }
-    .error {
-        color: red;
-    }
-</style>
+

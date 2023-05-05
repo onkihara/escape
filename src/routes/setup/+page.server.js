@@ -22,16 +22,12 @@ export const actions = {
 		} 
 
 		if (data.get('passphrase') !== BLIKK_ESCAPE_SECRET) {
-			return fail(403, {
-				validation_error: 'passphrase'
-			});
+			validation_error = 'incorrect passphrase'
 			// cookies.set('allowed', 'true', {
 			// 	path: '/'
 			// });
-		}
-
-		if ( ! data.get('key')) {
-			validation_error: 'no key for root given'
+		} else if ( ! data.get('root_key')) {
+			validation_error = 'no key for root given'
 		}
 
 		if (validation_error === '') {
