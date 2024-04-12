@@ -21,7 +21,7 @@ function getPlayer(access_key) {
             if (error) reject(null);
             houses.player.key = access_key;
             houses.player.is_root = false;
-            houses.player.rank = results[0].rank;
+            houses.player.rank = results[0] ? results[0].rank : 0;
             for (let i = 0; i < results.length; i++) {
                 houses.houses[i] = {
                     role : results[i].role,
@@ -107,12 +107,14 @@ function runQuery(query, values) {
 
 
 function connect() {
-    return mysql.createConnection({
+    const connpars = {
         host     : BLIKK_ESCAPE_DBHOST,
         user     : BLIKK_ESCAPE_DBUSER,
         password : BLIKK_ESCAPE_DBPASS,
         database : BLIKK_ESCAPE_DBNAME
-    });
+    };
+    //console.log(connpars);
+    return mysql.createConnection(connpars);
 }
 
 

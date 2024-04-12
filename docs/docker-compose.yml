@@ -1,0 +1,26 @@
+version: '3.8'
+
+# Services
+services:
+
+  #node server
+  node:
+    image: "node:20-alpine3.16"
+    user: "node"
+    working_dir: /home/node/app
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - ORIGIN=https://test.blikk.it
+      - BLIKK_ESCAPE_SECRET=akfjkafjdkf8q934589245249fakfö-kfja48394502öasd.7
+      - BLIKK_ESCAPE_DBHOST = 10.240.167.17
+      - BLIKK_ESCAPE_DBNAME = escape
+      - BLIKK_ESCAPE_DBUSER = escape_user
+      - BLIKK_ESCAPE_DBPASS = $%hieROgraph98itis194§§
+    volumes:
+      - /apps/escape:/home/node/app
+    expose:
+      - "3000"
+    ports:
+      - 3001:3000
+    command: "node -r dotenv/config build"

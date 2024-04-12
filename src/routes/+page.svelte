@@ -13,7 +13,7 @@
 
 	    <form method="POST">
 	        <label>
-	            <input name="access_key" autocomplete="off" value="{form?.access_key || ''}" autofocus />
+	            <input type="password" name="access_key" autocomplete="off" value="{form?.access_key || ''}" autofocus />
 	        </label>
 	    </form>
 

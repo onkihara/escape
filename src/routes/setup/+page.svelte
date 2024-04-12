@@ -2,7 +2,7 @@
     export let form;
 </script>
 
-<div class="esc_center">
+<div class="esc_center" style="background-color:black;">
 
     <h2>Escape Setup</h2>
     

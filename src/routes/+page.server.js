@@ -42,7 +42,8 @@ export const actions = {
 
 			// store player
 			cookies.set('access_key', formdata.access_key, {
-				path: '/'
+				path: '/',
+				secure : false
 			});
 
 			throw redirect(303, '/');

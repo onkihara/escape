@@ -34,6 +34,14 @@
         var pos = torch.getPosition(event);
         if (pos.y >= rect.top && pos.y <= rect.bottom && pos.x >= rect.left && pos.x <= rect.right) {
             items[room].switch = ! items[room].switch;
+            return true;
+        }
+        return false;
+    }
+
+    function setFocus(event,target_id, room) {
+        if (checkClicked(event,target_id,room)) {
+            items[room].input.focus();
         }
     }
 
@@ -52,7 +60,7 @@
         <h1>Welcome to the {data.house.name}</h1>
         {#if ! items.room_0.description}
             <p class="esc_description" on:click={() => items.room_0.description = true}>
-                Du bist in einem geheimen Forschungslabor im Schloss Rechtenthal gefangen genommen worden. Du wachst in einem kleinen Raum auf und bemerkt, dass er voll technischem Gerümpel ist.
+                Du bist in einem geheimen Forschungslabor im Schloss Rechtenthal gefangen genommen worden. Du wachst in einem kleinen Raum auf und bemerkst, dass er voll technischem Gerümpel ist.
             </p>
         {/if}
         {#if items.room_0.description}
@@ -75,7 +83,7 @@
 
 <!-- room 1 -->
 {#if data.player.rank === 1}
-    <div class:esc_torch={items.room_1.switch} on:mousemove={torch.update} on:click={(e) => checkClicked(e,'switch_3','room_1')}></div>
+    <div class:esc_torch={items.room_1.switch} on:mousemove={torch.update} on:touchmove={torch.update} on:click={(e) => checkClicked(e,'switch_3','room_1')}></div>
     <div class="esc_center" style="background-image: url({room_1_bg});">
         {#if items.room_1.switch}
             <p class="esc_description" on:click={() => items.room_0.input = true}>
@@ -108,7 +116,7 @@
     <div class="esc_center" style="background-image: url({room_2_bg})">
         {#if ! items.room_2.description}
             <p class="esc_description" on:click={() => items.room_2.description = true}>
-                Der dritte Raum ist voller Rätsel und Herausforderungen. Du musst deine Fähigkeiten als DSB nutzen, um das Sicherheitssystem zu hacken um den Code für den Ausgang zu finden.
+                Der dritte Raum ist voller Rätsel und Herausforderungen. Du musst deine Fähigkeiten als DSB nutzen, um das Sicherheitssystem zu hacken und den Code für den Ausgang zu finden.
             </p>
         {/if}
         {#if items.room_2.description && ! items.room_2.input}
@@ -138,7 +146,7 @@
 
 <!-- room 3 -->
 {#if data.player.rank === 3}
-    <div class:esc_torch={items.room_3.switch} on:mousemove={torch.update}  on:click={() => items.room_3.input.focus()}></div>
+    <div class:esc_torch={true} on:mousemove={torch.update} on:touchmove={torch.update}  on:click={(e) => setFocus(e,'switch_1','room_3')}></div>
     <div class="esc_center" style="background-image: url({room_3_bg})">
         {#if items.room_3.description}
             <p class="esc_description">
@@ -147,7 +155,7 @@
         {/if}
         {#if items.room_3.input}
             <form method="POST">
-                <label style="margin-bottom:280px;">
+                <label id="switch_1" style="margin-bottom:280px;">
                     <input name="solution" autocomplete="off" value="" bind:this={ items.room_3.input} />
                 </label>
                 <input type="hidden" name="room" value="3" />
@@ -168,7 +176,7 @@
     <div class="esc_center" style="background-image: url({room_4_bg})">
         {#if ! items.room_4.description}
             <p class="esc_description" on:click={() => items.room_4.description = true}>
-                Du betrittst den letzten Raum und sieht die Rettung schon greifbar nahe. Aber es gibt ein Problem: Die Tür ist mit einem Zahlenschloss gesichert. Zum Glück gibt es einen Hinweis auf die Kombination ...
+                Du betrittst den letzten Raum und siehst die Rettung schon greifbar nahe. Aber es gibt ein Problem: Die Tür ist mit einem Zahlenschloss gesichert. Zum Glück gibt es einen Hinweis auf die Kombination ...
             </p>
         {/if}
         {#if items.room_4.description}
@@ -194,7 +202,7 @@
 {#if data.player.rank === 5}
     <div class="esc_center" style="background-image: url({room_5_bg})">
         <p class="esc_description">
-            Du rennst aus dem Raum und erreichst rechtzeitig die Ausgangstür, bevor das Labor explodiert. Du entkommst erfolgreich und findest dich schließlich in einem sonnigen Innenhof wieder. Du bist erleichtert, dass du es geschafft hat, aber du weißt auch, dass es noch viele Fragen darüber gibt, wer dich gefangen genommen hat und warum und ob es überhaupt einen Preis für das Entkommen gibt?<br>Geschafft! Gratuliere, du hast das DSB-Verließ rechtzeitig verlassen und gehörst zu den glücklich Überlebenden!
+            Du rennst aus dem Raum und erreichst rechtzeitig die Ausgangstür, bevor das Labor explodiert. Du entkommst erfolgreich und findest dich schließlich in einem sonnigen Innenhof wieder. Du bist erleichtert, dass du es geschafft hat, aber du weißt auch, dass es noch viele Fragen darüber gibt, wer dich gefangen genommen hat und warum und ob es überhaupt einen Preis für das Entkommen gibt?<br>Geschafft! Gratuliere, du hast das DSB-Verlies rechtzeitig verlassen und gehörst zu den glücklich Überlebenden!
         </p>
         <p class="esc_description">
             DSB-Vault created with (a little) help form ChatGPT and DALL.E
