@@ -1,18 +1,62 @@
+<script>
+	import { page } from '$app/stores';
+    import { onNavigate } from '$app/navigation';
+    
+    onNavigate((navigation) => {
+        if (!document.startViewTransition) return;
+        return new Promise((resolve) => {
+            document.startViewTransition(async () => {
+                resolve();
+                await navigation.complete;
+            });
+        });
+    });
+
+    function createStyles() {
+        const styles = JSON.parse($page.data.house.styles);
+        let res = '';
+        for (const style in styles) {
+            res += style+':';
+            if (style === 'background-image') {
+                res += 'url(/assets/'+$page.data.house.hash+'/'+styles[style]+')'
+            } else {
+                res += styles[style];
+            }
+            res += ';';
+        }
+        document.body.setAttribute("style",res);
+    }
+
+</script>
+
+<svelte:body use:createStyles  />
+
 <slot></slot>
 
 <style global lang="scss">
+
+    @media (max-width: 1250px) {
+        body {
+            background-repeat:repeat-y !important;
+        } 
+    }
+
+    @font-face {
+        font-family: "Source Code Pro", monospace;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-weight: 400;
+        src: url('../assets/SourceCodePro-Regular.ttf') format('ttf');
+    }
+
     html, body {
         margin:0;
         width:100%;
         height:100%;
         color:white;
+        background-color:black;
     }
     .esc_center {
-        h1 {
-            max-width:80%;
-            margin-right:auto;
-            margin-left:auto;
-        }
         display:flex;
         flex-direction:column;
         text-align:center;
@@ -23,7 +67,12 @@
         background-repeat:no-repeat;
         background-size:cover;
         background-position:center;
-
+        
+        h1 {
+            max-width:80%;
+            margin-right:auto;
+            margin-left:auto;
+        }
         label {
             display:block;
             margin-top:20px;
@@ -32,7 +81,20 @@
                 width:200px;
                 height:40px;
                 margin:20px auto 50px;
+                padding: 10px;
                 text-align:center;
+                font-size:1.2em;
+                border-radius:7px;
+                border-color:#C00;
+                background-color:black;
+                color:white;
+            }
+            textarea {
+                display:block;
+                width:300px;
+                height:100px;
+                margin:20px auto 20px;
+                padding: 10px;
                 font-size:1.2em;
                 border-radius:7px;
                 border-color:#C00;
@@ -51,10 +113,48 @@
         button {
             width:80px;
             height:40px;
-            margin-top:25px;
+            margin-top:10px;
+            background-color:#C00;
+            border: none;
+            color:white;
+            border-radius: 0 10px;
+            cursor:pointer;
         }
     }
     .error {
         color: red;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fade-out {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes slide-from-right {
+        from {
+            transform: translateX(30px);
+        }
+    }
+
+    @keyframes slide-to-left {
+        to {
+            transform: translateX(-30px);
+        }
+    }
+
+    :root::view-transition-old(root) {
+        animation: 500ms cubic-bezier(0.4, 0, 1, 1) both fade-out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    }
+
+    :root::view-transition-new(root) {
+        animation: 810ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both
+                slide-from-right;
     }
 </style>

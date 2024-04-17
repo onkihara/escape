@@ -1,0 +1,182 @@
+{
+  ".svelte-kit/generated/client-optimized/app.js": {
+    "dynamicImports": [
+      ".svelte-kit/generated/client-optimized/nodes/0.js",
+      ".svelte-kit/generated/client-optimized/nodes/1.js",
+      ".svelte-kit/generated/client-optimized/nodes/2.js",
+      ".svelte-kit/generated/client-optimized/nodes/3.js",
+      ".svelte-kit/generated/client-optimized/nodes/4.js",
+      ".svelte-kit/generated/client-optimized/nodes/5.js",
+      ".svelte-kit/generated/client-optimized/nodes/6.js",
+      ".svelte-kit/generated/client-optimized/nodes/7.js"
+    ],
+    "file": "_app/immutable/entry/app.b0171be8.js",
+    "imports": [
+      "_index.08ce21f5.js"
+    ],
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/app.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/0.css": {
+    "file": "_app/immutable/assets/0.9a3fd4a5.css",
+    "src": ".svelte-kit/generated/client-optimized/nodes/0.css"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/0.js": {
+    "css": [
+      "_app/immutable/assets/0.9a3fd4a5.css"
+    ],
+    "file": "_app/immutable/nodes/0.f5bd68ac.js",
+    "imports": [
+      "_index.08ce21f5.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/0.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/1.js": {
+    "file": "_app/immutable/nodes/1.a88450d5.js",
+    "imports": [
+      "_index.08ce21f5.js",
+      "_singletons.f3f8da28.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/1.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/2.js": {
+    "assets": [
+      "_app/immutable/assets/login.e17fdcf4.png"
+    ],
+    "file": "_app/immutable/nodes/2.37046b26.js",
+    "imports": [
+      "_index.08ce21f5.js",
+      "_paths.22d683b1.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/2.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/3.js": {
+    "file": "_app/immutable/nodes/3.4451790f.js",
+    "imports": [
+      "_index.08ce21f5.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/3.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/4.css": {
+    "file": "_app/immutable/assets/4.4e698b7f.css",
+    "src": ".svelte-kit/generated/client-optimized/nodes/4.css"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/4.js": {
+    "assets": [
+      "_app/immutable/assets/room_0_bg.76eba521.png",
+      "_app/immutable/assets/room_1_bg.7d7af2f2.png",
+      "_app/immutable/assets/room_2_bg.a5fd300d.png",
+      "_app/immutable/assets/room_3_bg.565c037a.png",
+      "_app/immutable/assets/room_4_bg.8c4d16cb.jpg",
+      "_app/immutable/assets/room_5_bg.d691bf93.jpg",
+      "_app/immutable/assets/qr_3.70b07d69.png"
+    ],
+    "css": [
+      "_app/immutable/assets/4.4e698b7f.css"
+    ],
+    "file": "_app/immutable/nodes/4.506c2a2f.js",
+    "imports": [
+      "_index.08ce21f5.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/4.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/5.css": {
+    "file": "_app/immutable/assets/5.9748ceff.css",
+    "src": ".svelte-kit/generated/client-optimized/nodes/5.css"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/5.js": {
+    "css": [
+      "_app/immutable/assets/5.9748ceff.css"
+    ],
+    "file": "_app/immutable/nodes/5.e769bd0d.js",
+    "imports": [
+      "_index.08ce21f5.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/5.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/6.js": {
+    "file": "_app/immutable/nodes/6.732bbcce.js",
+    "imports": [
+      "_index.08ce21f5.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/6.js"
+  },
+  ".svelte-kit/generated/client-optimized/nodes/7.js": {
+    "file": "_app/immutable/nodes/7.91307727.js",
+    "imports": [
+      "_index.08ce21f5.js"
+    ],
+    "isDynamicEntry": true,
+    "isEntry": true,
+    "src": ".svelte-kit/generated/client-optimized/nodes/7.js"
+  },
+  "_index.08ce21f5.js": {
+    "file": "_app/immutable/chunks/index.08ce21f5.js"
+  },
+  "_paths.22d683b1.js": {
+    "file": "_app/immutable/chunks/paths.22d683b1.js"
+  },
+  "_singletons.f3f8da28.js": {
+    "file": "_app/immutable/chunks/singletons.f3f8da28.js",
+    "imports": [
+      "_index.08ce21f5.js",
+      "_paths.22d683b1.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
+    "file": "_app/immutable/entry/start.42e80725.js",
+    "imports": [
+      "_index.08ce21f5.js",
+      "_singletons.f3f8da28.js",
+      "_paths.22d683b1.js"
+    ],
+    "isEntry": true,
+    "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js"
+  },
+  "src/lib/assets/dsb-vault/qr_3.png": {
+    "file": "_app/immutable/assets/qr_3.70b07d69.png",
+    "src": "src/lib/assets/dsb-vault/qr_3.png"
+  },
+  "src/lib/assets/dsb-vault/room_0_bg.png": {
+    "file": "_app/immutable/assets/room_0_bg.76eba521.png",
+    "src": "src/lib/assets/dsb-vault/room_0_bg.png"
+  },
+  "src/lib/assets/dsb-vault/room_1_bg.png": {
+    "file": "_app/immutable/assets/room_1_bg.7d7af2f2.png",
+    "src": "src/lib/assets/dsb-vault/room_1_bg.png"
+  },
+  "src/lib/assets/dsb-vault/room_2_bg.png": {
+    "file": "_app/immutable/assets/room_2_bg.a5fd300d.png",
+    "src": "src/lib/assets/dsb-vault/room_2_bg.png"
+  },
+  "src/lib/assets/dsb-vault/room_3_bg.png": {
+    "file": "_app/immutable/assets/room_3_bg.565c037a.png",
+    "src": "src/lib/assets/dsb-vault/room_3_bg.png"
+  },
+  "src/lib/assets/dsb-vault/room_4_bg.jpg": {
+    "file": "_app/immutable/assets/room_4_bg.8c4d16cb.jpg",
+    "src": "src/lib/assets/dsb-vault/room_4_bg.jpg"
+  },
+  "src/lib/assets/dsb-vault/room_5_bg.jpg": {
+    "file": "_app/immutable/assets/room_5_bg.d691bf93.jpg",
+    "src": "src/lib/assets/dsb-vault/room_5_bg.jpg"
+  },
+  "src/lib/assets/login.png": {
+    "file": "_app/immutable/assets/login.e17fdcf4.png",
+    "src": "src/lib/assets/login.png"
+  }
+}

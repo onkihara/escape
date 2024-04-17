@@ -1,5 +1,5 @@
 <script>
-	import login_bg from '$lib/assets/dsb-vault/login.png';
+	import login_bg from '$lib/assets/login.png';
 	import { goto } from "$app/navigation";
     export let form;
     export let data;
@@ -9,7 +9,7 @@
 
 	<div class="esc_center" style="background-image:url({login_bg});">
 
-	    <h2>Escape!</h2>
+	    <h2>Code Jugglers Entry</h2>
 
 	    <form method="POST">
 	        <label>

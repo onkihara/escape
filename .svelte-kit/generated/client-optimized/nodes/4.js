@@ -1,0 +1,1 @@
+export { default as component } from "../../../../src/routes/houses/dsb-vault/+page.svelte";
