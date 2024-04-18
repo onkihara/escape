@@ -10,7 +10,7 @@
     }
 
     function riddleGain(riddle) {
-        return riddle.state.gain || 0;
+        return riddle.state.state === 1 ? riddle.state.gain : 0;
     }
 
     function score() {
@@ -31,14 +31,14 @@
 
         {#each riddles as riddle}
 
-        <a  class="riddle" href="{'/houses/'+house.hash+'/'+riddle.id}">
-            {#if riddleIsOpen(riddle) }
-                <span>{ riddle.name }</span>
-                <span class="gain">{ riddleGain(riddle) }</span>
-            {:else}
-                <span class="questionmark">?</span>  
-            {/if}
-        </a>
+            <a  class="riddle" href="{'/houses/'+house.hash+'/'+riddle.id}">
+                {#if riddleIsOpen(riddle) }
+                    <span>{ riddle.name }</span>
+                    <span class="gain">{ riddleGain(riddle) }</span>
+                {:else}
+                    <span class="questionmark">?</span>  
+                {/if}
+            </a>
 
         {/each}
         
@@ -46,6 +46,10 @@
 
     <div class="score label">
         Score: { score() }
+    </div>
+
+    <div class="logout label">
+        <a href="/logout">logout</a>
     </div>
 
 </div>
@@ -127,6 +131,13 @@
             font-weight:800;
             margin: 50px auto;
             max-width:300px;
+        }
+        .logout {
+            a {
+                color:#CC0000;
+            }
+            max-width:180px;
+            margin: auto;
         }
     }
 </style>

@@ -72,6 +72,8 @@ declare module '$env/static/private' {
 	export const DFS: string;
 	export const DriverData: string;
 	export const EDITOR: string;
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const FP_NO_HOST_CHECK: string;
 	export const GISHOME: string;
 	export const GTK_BASEPATH: string;
@@ -238,6 +240,8 @@ declare module '$env/dynamic/private' {
 		DFS: string;
 		DriverData: string;
 		EDITOR: string;
+		FPS_BROWSER_APP_PROFILE_STRING: string;
+		FPS_BROWSER_USER_PROFILE_STRING: string;
 		FP_NO_HOST_CHECK: string;
 		GISHOME: string;
 		GTK_BASEPATH: string;

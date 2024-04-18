@@ -6,6 +6,10 @@ export const db = {
     connect,
     close,
     getPlayer,
+    getClues,
+    openClue,
+    getCluesStates,
+    getCluesWithStates,
     getClueSubtractions,
     writeScore,
     getRiddlesWithStates,
@@ -15,9 +19,103 @@ export const db = {
     runQuery
 };
 
+// persist clue state
+async function openClue(player_id,clue_id,cost) {
+    // is there a state entry
+    const state = await getCluesStates(player_id,clue_id);
+    return new Promise((resolve, reject) => {
+        const connection = connect();
+        if (state.length === 0) {
+            connection.query("INSERT `clue_states` SET `player_id` = ?, `clue_id` = ?, `cost` = ?, `state` = 1",[player_id, clue_id, cost],(error, results, fields) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(clue_id);
+                }
+            });
+        } else {
+            connection.query("UPDATE `clue_states` SET `state` = 1, `cost` = ? WHERE `player_id` LIKE ? AND `clue_id` = ?",[cost, player_id, clue_id],(error, results, fields) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(clue_id);
+                }
+            });
+        }
+        close(connection);
+    });
+}
+
+
+async function getCluesWithStates(player_id,riddle_id) {
+    const clues = await getClues(riddle_id);
+    const clue_ids = clues.map((cl) => cl.id);
+    let states = [];
+    if (clue_ids.length > 0) {
+        states = await getCluesStates(player_id,clue_ids.join());
+    }
+    const filtered_clues = [];
+    let first = true;
+    for (let i = 0; i < clues.length; i++) {
+        const state = states.filter((st) => st.clue_id === clues[i].id);
+        if (state.length === 0 || state[0].state === 0) {
+            let active = 0;
+            if (first) {
+                active = 1;
+                first = 0;
+            }
+            filtered_clues[i] = { id : clues[i].id, cost : clues[i].cost, open : false,  active };
+        } else {
+            filtered_clues[i] = { open : true, ...clues[i] };
+        }
+    }
+    return filtered_clues;
+}
+
+// get the clues of a riddle
+async function getClues(riddle_id) {
+    return new Promise((resolve, reject) => {
+        const connection = connect();
+        connection.query("SELECT * FROM `clues` WHERE `riddle_id` = ? ORDER BY `id`",[riddle_id],(error, results, fields) => {
+            if (error) reject(null);
+            const clues = [];
+            for (let i = 0; i < results.length; i++) {
+                clues.push(Object.assign({},results[i]));
+            }
+            resolve(clues);
+        });
+        close(connection);
+    });
+}
+
+
+// get the clues_states for player and clue_ids (csv)
+async function getCluesStates(player_id,clue_ids) {
+    if ( ! clue_ids ) return [];
+    return new Promise((resolve, reject) => {
+        const connection = connect();
+        connection.query("SELECT * FROM `clue_states` WHERE `player_id` = ? AND `clue_id` IN ("+clue_ids+")",[player_id],(error, results, fields) => {
+            if (error) reject(null);
+            const states = [];
+            for (let i = 0; i < results.length; i++) {
+                states.push(Object.assign({},results[i]));
+            }
+            resolve(states);
+        });
+        close(connection);
+    });
+}
+
 // evaluate the clues
 async function getClueSubtractions(player_id,riddle_id) {
-    return 0;
+    const clues = await getClues(riddle_id);
+    const clue_ids = clues.map((clue) => clue.id);
+    const clue_states = await getCluesStates(player_id,clue_ids.join());
+    let count = 0;
+    for (let i = 0; i < clue_states.length; i++) {
+        count += clue_states[i].cost;
+    }
+    return count;
 }
 
 // persist score
@@ -35,7 +133,7 @@ async function writeScore(score,player_id,riddle_id) {
                 }
             });
         } else {
-            connection.query("UPDATE `riddle_states` SET `gain` = ?, `state` = 1 WHERE `player_id` LIKE ? AND `riddle_id` LIKE ?",[score, player_id, riddle_id],(error, results, fields) => {
+            connection.query("UPDATE `riddle_states` SET `gain` = ?, `state` = 1 WHERE `player_id` = ? AND `riddle_id` = ?",[score, player_id, riddle_id],(error, results, fields) => {
                 if (error) {
                     reject(error);
                 } else {

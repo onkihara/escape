@@ -13,6 +13,7 @@
     });
 
     function createStyles() {
+        if (! $page.data.house) return '';
         const styles = JSON.parse($page.data.house.styles);
         let res = '';
         for (const style in styles) {
@@ -55,13 +56,13 @@
         height:100%;
         color:white;
         background-color:black;
+        font-family: "Source Code Pro", monospace;
     }
     .esc_center {
         display:flex;
         flex-direction:column;
         text-align:center;
         align-self:center;
-        font-family:Helvetica, sans-serif;
         width:100%;
         height:100%;
         background-repeat:no-repeat;
@@ -119,6 +120,7 @@
             color:white;
             border-radius: 0 10px;
             cursor:pointer;
+            font-family: "Source Code Pro", monospace;
         }
     }
     .error {

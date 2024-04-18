@@ -36,7 +36,7 @@ export const clues = JSON.stringify([
         type : 'text',
         text : `Wörter sind gesucht`,
         cost : 3,
-        used : false,
+        tool : ''
     },
     {
         id : 2,
@@ -44,7 +44,6 @@ export const clues = JSON.stringify([
         text : 'In gleichem Abstand',
         cost : 2,
         tool : 'wordsequencer',
-        used : false,
     }
 ]);
 

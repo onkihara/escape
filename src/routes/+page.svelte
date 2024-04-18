@@ -1,5 +1,4 @@
 <script>
-	import login_bg from '$lib/assets/login.png';
 	import { goto } from "$app/navigation";
     export let form;
     export let data;
@@ -7,7 +6,7 @@
 
 <div class="esc_center">
 
-	<div class="esc_center" style="background-image:url({login_bg});">
+	<div class="login">
 
 	    <h2>Code Jugglers Entry</h2>
 
@@ -24,4 +23,24 @@
     {/if}
 
 </div>
+
+<style lang="scss">
+
+	.esc_center {
+		background-image: url('../assets/login.png');
+		justify-content: center;
+		align-items: center;
+		.login {
+			color:black;
+			padding:50px;
+			max-width:800px;
+			background-color:rgba(255,255,255,0.8);
+			border-radius: 0 30px;
+			input {
+				background: black;
+			}
+		}
+	}
+
+</style>
 

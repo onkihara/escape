@@ -24,6 +24,9 @@ export async function load({ cookies, url }) {
 	if ( riddle.state && riddle.state.state === 1) {
 		throw redirect(303,'/houses/'+hash);
 	}
+
+	// get clues for riddle
+	riddle.clues = await db.getCluesWithStates(player.player.id,riddle.id);
 	
     const data = {
 		house,
@@ -60,7 +63,7 @@ export const actions = {
 		const chiffre = riddles[0].chiffre;
 
 		// check input
-		if (formdata.solution != chiffre.solution) {
+		if (formdata.solution.trim() != chiffre.solution) {
 			return fail(400, { solution : formdata.solution, match: false });
 		}
 
