@@ -63,7 +63,9 @@ export const actions = {
 		const chiffre = riddles[0].chiffre;
 
 		// check input
-		if (formdata.solution.trim() != chiffre.solution) {
+		let user_solution = formdata.solution.trim().toLowerCase().replace(/[\s\.,;:\!\?\/<>"'\(\)]+/g,'');
+		let riddle_solution = chiffre.solution.toLowerCase().replace(/[\s\.,;:\!\?\/<>"'\(\)]+/g,'');;
+		if ( user_solution != riddle_solution) {
 			return fail(400, { solution : formdata.solution, match: false });
 		}
 
@@ -71,6 +73,8 @@ export const actions = {
 		const sub_clues = await db.getClueSubtractions(player.player.id,riddle_id);
 		const score = riddles[0].gain - sub_clues;
 		await db.writeScore(score,player.player.id,riddle_id);
+		const total_score = allriddles.reduce((accu, riddle) => accu + (riddle.state && riddle.state.state === 1 ? riddle.state.gain : 0),0);
+		await db.setRank(house.id,player.player.key,total_score + score);
 
 		throw redirect(303,'/houses/'+hash);
 	}

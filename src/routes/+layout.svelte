@@ -25,6 +25,8 @@
             }
             res += ';';
         }
+        // body-height
+        res += 'height:'+document.body.scrollHeight+'px;';
         document.body.setAttribute("style",res);
     }
 
@@ -40,6 +42,18 @@
         body {
             background-repeat:repeat-y !important;
         } 
+    }
+
+    @media (max-width: 480px) {
+        .content {
+            width:95% !important;
+            padding:10px !important;
+        }
+        .template_content {
+            .background_img {
+                width:100% !important;
+            }
+        }
     }
 
     @font-face {
@@ -62,7 +76,6 @@
         display:flex;
         flex-direction:column;
         text-align:center;
-        align-self:center;
         width:100%;
         height:100%;
         background-repeat:no-repeat;
@@ -73,6 +86,12 @@
             max-width:80%;
             margin-right:auto;
             margin-left:auto;
+        }
+        .content {
+            text-align: left;
+        }
+        form {
+            text-align:center;
         }
         label {
             display:block;
@@ -121,6 +140,22 @@
             border-radius: 0 10px;
             cursor:pointer;
             font-family: "Source Code Pro", monospace;
+        }
+    }
+    .highlight {
+        color:#CC0000;
+        font-weight:bold;
+    }
+    a.closer {
+        width:25px;
+        height:25px;
+        position: absolute;
+        top:5px;
+        right:5px;
+        cursor:pointer;
+        color:black;
+        &:hover {
+            color:#CC0000;
         }
     }
     .error {

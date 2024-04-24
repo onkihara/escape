@@ -6,11 +6,11 @@
     const riddles = data.riddles;
 
     function riddleIsOpen(riddle) {
-        return riddle.state.state === 1;
+        return riddle.state && riddle.state.state === 1;
     }
 
     function riddleGain(riddle) {
-        return riddle.state.state === 1 ? riddle.state.gain : 0;
+        return riddle.state && riddle.state.state === 1 ? riddle.state.gain : 0;
     }
 
     function score() {
@@ -69,7 +69,6 @@
     }
 
     .main {
-        font-family: "Source Code Pro";
         color:black;
         text-align:center;
         margin:0px;

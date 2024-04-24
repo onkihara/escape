@@ -124,23 +124,19 @@ async function writeScore(score,player_id,riddle_id) {
     const state = await getState(player_id,riddle_id);
     return new Promise((resolve, reject) => {
         const connection = connect();
+        let query = '';
         if (state.length === 0) {
-            connection.query("INSERT `riddle_states` SET `gain` = ?, `player_id` = ?, `riddle_id` = ?, `state` = 1",[score, player_id, riddle_id],(error, results, fields) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(score);
-                }
-            });
+            query = "INSERT `riddle_states` SET `gain` = ?, `player_id` = ?, `riddle_id` = ?, `state` = 1";
         } else {
-            connection.query("UPDATE `riddle_states` SET `gain` = ?, `state` = 1 WHERE `player_id` = ? AND `riddle_id` = ?",[score, player_id, riddle_id],(error, results, fields) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(score);
-                }
-            });
+            query = "UPDATE `riddle_states` SET `gain` = ?, `state` = 1 WHERE `player_id` = ? AND `riddle_id` = ?";
         }
+        connection.query(query,[score, player_id, riddle_id],(error, results, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(score);
+            }
+        });
         close(connection);
     });
 }
@@ -161,7 +157,7 @@ async function getRiddlesWithStates(player_id,house_id,withchiffre = false) {
             // default if empty
             var state = {};
             if (riddle_states[i].riddle_id === riddles_with_states[riddle].id) {
-                state = Object.assign({},riddle_states[riddle]);
+                state = Object.assign({},riddle_states[i]);
                 break;
             }
         }
@@ -169,7 +165,7 @@ async function getRiddlesWithStates(player_id,house_id,withchiffre = false) {
         // parse JSON-Fields
         for (const field in riddles_with_states[riddle]) {
             if (['styles','input','chiffre'].indexOf(field) != -1) {
-                riddles_with_states[riddle][field] = JSON.parse(riddles_with_states[riddle][field]);
+                riddles_with_states[riddle][field] = riddles_with_states[riddle][field] ? JSON.parse(riddles_with_states[riddle][field]) : {};
             }
         }
         if ( ! withchiffre) {
@@ -262,6 +258,7 @@ function getRiddles(house_id, riddle_id = null) {
 
 
 function getRiddleStates(player_id, riddle_ids) {
+    if ( ! riddle_ids) return [];
     return new Promise((resolve, reject) => {
         const connection = connect();
         connection.query("SELECT * FROM `riddle_states` WHERE `player_id` = ? AND `riddle_id` IN ("+riddle_ids+")",[player_id],(error, results, fields) => {
