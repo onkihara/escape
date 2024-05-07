@@ -27,7 +27,7 @@
 <style lang="scss">
 
 	.esc_center {
-		background-image: url('../assets/login.png');
+		background-image: url('/assets/login.png');
 		justify-content: center;
 		align-items: center;
 		.login {

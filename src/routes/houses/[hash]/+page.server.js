@@ -7,6 +7,8 @@ export async function load({ cookies, url, depends }) {
 	const hash = url.pathname.split('/').pop();
 	const player = await canPlay(hash,cookies.get('access_key'));
 
+	//console.log('house - load: ',player)
+
 	if ( ! player) {
         throw redirect(303,'/');
 	}

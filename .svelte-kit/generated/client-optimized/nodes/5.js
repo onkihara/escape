@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/houses/nullchiffre/+page.svelte";
+export { default as component } from "../../../../src/routes/houses/[hash]/+page.svelte";

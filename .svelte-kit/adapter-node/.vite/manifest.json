@@ -28,10 +28,17 @@
       "_mysql.js"
     ]
   },
+  "_stores.js": {
+    "file": "chunks/stores.js",
+    "imports": [
+      "_index2.js"
+    ]
+  },
   "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
     "file": "entries/fallbacks/error.svelte.js",
     "imports": [
-      "_index2.js"
+      "_index2.js",
+      "_stores.js"
     ],
     "isEntry": true,
     "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte"
@@ -74,24 +81,25 @@
     "file": "_app/immutable/assets/room_5_bg.d691bf93.jpg",
     "src": "src/lib/assets/dsb-vault/room_5_bg.jpg"
   },
-  "src/lib/assets/login.png": {
-    "file": "_app/immutable/assets/login.e17fdcf4.png",
-    "src": "src/lib/assets/login.png"
-  },
   "src/routes/+layout.css": {
-    "file": "_app/immutable/assets/_layout.9a3fd4a5.css",
+    "file": "_app/immutable/assets/_layout.d5a5c8a2.css",
     "src": "src/routes/+layout.css"
   },
   "src/routes/+layout.svelte": {
     "css": [
-      "_app/immutable/assets/_layout.9a3fd4a5.css"
+      "_app/immutable/assets/_layout.d5a5c8a2.css"
     ],
     "file": "entries/pages/_layout.svelte.js",
     "imports": [
-      "_index2.js"
+      "_index2.js",
+      "_stores.js"
     ],
     "isEntry": true,
     "src": "src/routes/+layout.svelte"
+  },
+  "src/routes/+page.css": {
+    "file": "_app/immutable/assets/_page.15d2e6da.css",
+    "src": "src/routes/+page.css"
   },
   "src/routes/+page.server.js": {
     "file": "entries/pages/_page.server.js",
@@ -103,8 +111,8 @@
     "src": "src/routes/+page.server.js"
   },
   "src/routes/+page.svelte": {
-    "assets": [
-      "_app/immutable/assets/login.e17fdcf4.png"
+    "css": [
+      "_app/immutable/assets/_page.15d2e6da.css"
     ],
     "file": "entries/pages/_page.svelte.js",
     "imports": [
@@ -112,6 +120,16 @@
     ],
     "isEntry": true,
     "src": "src/routes/+page.svelte"
+  },
+  "src/routes/api/clue/+server.js": {
+    "file": "entries/endpoints/api/clue/_server.js",
+    "imports": [
+      "_index.js",
+      "_mysql.js",
+      "_player.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/api/clue/+server.js"
   },
   "src/routes/createhouse/+page.server.js": {
     "file": "entries/pages/createhouse/_page.server.js",
@@ -129,6 +147,56 @@
     ],
     "isEntry": true,
     "src": "src/routes/createhouse/+page.svelte"
+  },
+  "src/routes/houses/[hash]/+page.css": {
+    "file": "_app/immutable/assets/_page.fefc99f5.css",
+    "src": "src/routes/houses/[hash]/+page.css"
+  },
+  "src/routes/houses/[hash]/+page.server.js": {
+    "file": "entries/pages/houses/_hash_/_page.server.js",
+    "imports": [
+      "_index.js",
+      "_mysql.js",
+      "_player.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/houses/[hash]/+page.server.js"
+  },
+  "src/routes/houses/[hash]/+page.svelte": {
+    "css": [
+      "_app/immutable/assets/_page.fefc99f5.css"
+    ],
+    "file": "entries/pages/houses/_hash_/_page.svelte.js",
+    "imports": [
+      "_index2.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/houses/[hash]/+page.svelte"
+  },
+  "src/routes/houses/[hash]/[id]/+page.css": {
+    "file": "_app/immutable/assets/_page.72dac109.css",
+    "src": "src/routes/houses/[hash]/[id]/+page.css"
+  },
+  "src/routes/houses/[hash]/[id]/+page.server.js": {
+    "file": "entries/pages/houses/_hash_/_id_/_page.server.js",
+    "imports": [
+      "_index.js",
+      "_mysql.js",
+      "_player.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/houses/[hash]/[id]/+page.server.js"
+  },
+  "src/routes/houses/[hash]/[id]/+page.svelte": {
+    "css": [
+      "_app/immutable/assets/_page.72dac109.css"
+    ],
+    "file": "entries/pages/houses/_hash_/_id_/_page.svelte.js",
+    "imports": [
+      "_index2.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/houses/[hash]/[id]/+page.svelte"
   },
   "src/routes/houses/dsb-vault/+page.css": {
     "file": "_app/immutable/assets/_page.4e698b7f.css",
@@ -163,31 +231,6 @@
     ],
     "isEntry": true,
     "src": "src/routes/houses/dsb-vault/+page.svelte"
-  },
-  "src/routes/houses/nullchiffre/+page.css": {
-    "file": "_app/immutable/assets/_page.9748ceff.css",
-    "src": "src/routes/houses/nullchiffre/+page.css"
-  },
-  "src/routes/houses/nullchiffre/+page.server.js": {
-    "file": "entries/pages/houses/nullchiffre/_page.server.js",
-    "imports": [
-      "_index.js",
-      "_mysql.js",
-      "_player.js"
-    ],
-    "isEntry": true,
-    "src": "src/routes/houses/nullchiffre/+page.server.js"
-  },
-  "src/routes/houses/nullchiffre/+page.svelte": {
-    "css": [
-      "_app/immutable/assets/_page.9748ceff.css"
-    ],
-    "file": "entries/pages/houses/nullchiffre/_page.svelte.js",
-    "imports": [
-      "_index2.js"
-    ],
-    "isEntry": true,
-    "src": "src/routes/houses/nullchiffre/+page.svelte"
   },
   "src/routes/logout/+page.server.js": {
     "file": "entries/pages/logout/_page.server.js",

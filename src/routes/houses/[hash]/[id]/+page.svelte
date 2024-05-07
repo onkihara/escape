@@ -1,16 +1,22 @@
 <script>
     import { fade, slide } from 'svelte/transition';
     import { api } from '$lib/api.js';
+
+    // tools
+    import Charsequencer from '/src/tools/Charsequencer.svelte';
     import TypeTemplate from '/src/tools/TypeTemplate.svelte';
-   
+    import Wordsequencer from '/src/tools/Wordsequencer.svelte';
+    import Wordfinder from '/src/tools/Wordfinder.svelte';
+
+    const tools = { Charsequencer, Wordsequencer, Wordfinder };
+
     export let form;
     export let data;
    
     const house = data.house;
     let riddle = data.riddle;
     let template_on = false;
-    let tool = null;
-
+    let tool;
    
     function createStyles() {
         const styles = riddle.styles;
@@ -37,7 +43,9 @@
             template_on = true;
         } else {
             toolname = toolname.charAt(0).toUpperCase() + toolname.slice(1);
-            tool = (await import('../../../../tools/'+ toolname +'.svelte')).default;
+            // won't work in build !?
+            //tool = (await import('../../../../tools/'+ toolname +'.svelte')).default;
+            tool = tools[toolname];
             if ( ! tool) return;
         }
         clue_open = false;

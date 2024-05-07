@@ -181,23 +181,28 @@ function getPlayer(access_key) {
         const connection = connect();
         const houses = { houses : [], player : {}};
         connection.query("SELECT * FROM `houses`, `players` WHERE `key` LIKE ? AND `house_id` = `houses`.`id`",[access_key],(error, results, fields) => {
-            if (error) reject(null);
-            houses.player.id = results[0].id;
-            houses.player.key = access_key;
-            houses.player.is_root = false;
-            houses.player.rank = results[0] ? results[0].rank : 0;
-            for (let i = 0; i < results.length; i++) {
-                houses.houses[i] = {
-                    role : results[i].role,
-                    house_id : results[i].house_id,
-                    house_name : results[i].name,
-                    hash : results[i].hash,
-                    key : results[i].key
-                };
-                if (results[i].role === 'root') {
-                    houses.player.is_root = true;
-                }
+            if (error) {
+                console.log(error)
+                reject(null);
             }
+            if (results && results.length > 0) {
+                houses.player.id = results[0].id;
+                houses.player.key = access_key;
+                houses.player.is_root = false;
+                houses.player.rank = results[0] ? results[0].rank : 0;
+                for (let i = 0; i < results.length; i++) {
+                    houses.houses[i] = {
+                        role : results[i].role,
+                        house_id : results[i].house_id,
+                        house_name : results[i].name,
+                        hash : results[i].hash,
+                        key : results[i].key
+                    };
+                    if (results[i].role === 'root') {
+                        houses.player.is_root = true;
+                    }
+                }
+            } 
             resolve(houses);
         });
         close(connection);

@@ -3,6 +3,9 @@ import { d as db } from "../../chunks/mysql.js";
 async function load({ cookies }) {
   if (cookies.get("access_key")) {
     const data = await db.getPlayer(cookies.get("access_key"));
+    if (!data?.player?.key) {
+      throw redirect(303, "/logout");
+    }
     if (data.player.is_root) {
       throw redirect(303, "/createhouse");
     }

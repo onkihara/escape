@@ -6,6 +6,12 @@ export async function canPlay(hash, access_key) {
 		
 		const data = await db.getPlayer(access_key);
 
+		//console.log('Player: ',data)
+
+		if (! data?.player?.id) {
+			return false;
+		}
+
 		// has root privilege
 		if (data.player.is_root) {
 			return data;

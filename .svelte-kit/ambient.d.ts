@@ -28,9 +28,9 @@
 declare module '$env/static/private' {
 	export const BLIKK_ESCAPE_SECRET: string;
 	export const BLIKK_ESCAPE_DBHOST: string;
+	export const BLIKK_ESCAPE_DBNAME: string;
 	export const BLIKK_ESCAPE_DBUSER: string;
 	export const BLIKK_ESCAPE_DBPASS: string;
-	export const BLIKK_ESCAPE_DBNAME: string;
 	export const ALLUSERSPROFILE: string;
 	export const all_proxy: string;
 	export const ANSICON: string;
@@ -194,9 +194,9 @@ declare module '$env/dynamic/private' {
 	export const env: {
 		BLIKK_ESCAPE_SECRET: string;
 		BLIKK_ESCAPE_DBHOST: string;
+		BLIKK_ESCAPE_DBNAME: string;
 		BLIKK_ESCAPE_DBUSER: string;
 		BLIKK_ESCAPE_DBPASS: string;
-		BLIKK_ESCAPE_DBNAME: string;
 		ALLUSERSPROFILE: string;
 		all_proxy: string;
 		ANSICON: string;

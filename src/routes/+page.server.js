@@ -8,6 +8,13 @@ export async function load({ cookies }) {
 	if (cookies.get('access_key')) {
 		const data = await db.getPlayer(cookies.get('access_key'));
 
+		//console.log('login-load: ',data)
+
+		// no player for this key found
+		if ( ! data?.player?.key) {
+			throw redirect(303,'/logout');
+		}
+
 		// if root
 		if (data.player.is_root) {
 			throw redirect(303,'/createhouse');
@@ -37,6 +44,8 @@ export const actions = {
 		} 
 
 		const player = await db.getPlayer(formdata.access_key);
+
+		//console.log('login-form: ',player)
 
 		if (player?.player?.key) {
 
